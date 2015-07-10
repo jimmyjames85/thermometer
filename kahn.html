@@ -35,24 +35,22 @@ Stackoverflow <a href="http://stackoverflow.com/questions/25341597/how-can-khan-
 	{
 
 /////////////////////////// INSERT YOUR KHAN ACADEMY PROGRAM HERE   //////////////////////////////
-
-		var baseSize = 50;
-		var baseX = 200 + 1/2 * baseSize;
-		var baseY = 370;
-		var stemW = 35;
-		var stemH = 350;
+		
+		var baseSize = 1/8 * canvas.width;
+		var baseX = 1/2 * canvas.width;
+		var baseY = 0.925 * canvas.height;
+		var stemW = 7/10 * baseSize;
+		var stemH = 0.875 * canvas.height;
 		var markerX1 = baseX;
 		var markerX2 = baseX - 1/3 * baseSize;
 		var zeroMarkerY =  baseY - 1/2 * baseSize;
-		var nextMarker = 32.5;
+		var nextMarker = 1/10 * (zeroMarkerY - (baseY - stemH));
 		// amtRaised and totalGoal should be the inputs from the site
-		var amtRaised = 2000;
+		var amtRaised = 1500;
 		var totalGoal = 2000;
 		var percent = amtRaised / totalGoal;
-		// 325 is the useable height of the thermometer.... the base line to the top line
-		var fillPoint = zeroMarkerY - percent * 325;
-
-
+		var fillPoint = zeroMarkerY - percent * (zeroMarkerY - (baseY - stemH));
+		
 		var draw = function() {
 		    background(255,255,255);
 		    noStroke();
@@ -82,7 +80,6 @@ Stackoverflow <a href="http://stackoverflow.com/questions/25341597/how-can-khan-
 		    line(markerX1, zeroMarkerY - 8 * nextMarker, markerX2, zeroMarkerY - 8 * nextMarker);
 		    line(markerX1, zeroMarkerY - 9 * nextMarker, markerX2, zeroMarkerY - 9 * nextMarker);
 		    line(markerX1, zeroMarkerY - 10 * nextMarker, markerX2, zeroMarkerY - 10 * nextMarker);
-		    
 		    
 		    
 		};
