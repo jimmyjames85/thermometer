@@ -36,6 +36,38 @@ Stackoverflow <a href="http://stackoverflow.com/questions/25341597/how-can-khan-
 
 /////////////////////////// INSERT YOUR KHAN ACADEMY PROGRAM HERE   //////////////////////////////
 		
+		<!DOCTYPE html>
+<html>
+<head>
+  <title>JavaScript</title>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/processing.js/1.4.8/processing.min.js"></script>
+</head>
+<body>
+
+Stackoverflow <a href="http://stackoverflow.com/questions/25341597/how-can-khan-academy-computer-programs-be-run-offline-or-on-my-own-website">question</a> on how to use Khan Academy offline.<br>
+
+  <canvas id="canvas" width="400" height="500"></canvas>
+  <script>
+    var canvas = document.getElementById("canvas");
+    var processing = new Processing(canvas, function(processing) 
+    {
+        processing.size(400, 400);
+        processing.background(0xF0F);
+	var mouseIsPressed = false;
+        processing.mousePressed = function () { mouseIsPressed = true; };
+        processing.mouseReleased = function () { mouseIsPressed = false; };
+        var keyIsPressed = false;
+        processing.keyPressed = function () { keyIsPressed = true; };
+        processing.keyReleased = function () { keyIsPressed = false; };
+        function getImage(s) 
+	{
+            var url = "https://www.kasandbox.org/programming-images/" + s + ".png";
+            processing.externals.sketch.imageCache.add(url);
+            return processing.loadImage(url);
+        }
+        with (processing) 
+	{
+/////////////////////////// INSERT YOUR KHAN ACADEMY PROGRAM HERE   //////////////////////////////
 		var baseSize = 1/8 * canvas.width;
 		var baseX = 1/2 * canvas.width;
 		var baseY = 0.925 * canvas.height;
@@ -46,7 +78,7 @@ Stackoverflow <a href="http://stackoverflow.com/questions/25341597/how-can-khan-
 		var zeroMarkerY =  baseY - 1/2 * baseSize;
 		var nextMarker = 1/10 * (zeroMarkerY - (baseY - stemH));
 		// amtRaised and totalGoal should be the inputs from the site
-		var amtRaised = 1500;
+		var amtRaised = 200;
 		var totalGoal = 2000;
 		var percent = amtRaised / totalGoal;
 		var fillPoint = zeroMarkerY - percent * (zeroMarkerY - (baseY - stemH));
@@ -79,10 +111,29 @@ Stackoverflow <a href="http://stackoverflow.com/questions/25341597/how-can-khan-
 		    line(markerX1, zeroMarkerY - 7 * nextMarker, markerX2, zeroMarkerY - 7 * nextMarker);
 		    line(markerX1, zeroMarkerY - 8 * nextMarker, markerX2, zeroMarkerY - 8 * nextMarker);
 		    line(markerX1, zeroMarkerY - 9 * nextMarker, markerX2, zeroMarkerY - 9 * nextMarker);
-		    line(markerX1, zeroMarkerY - 10 * nextMarker, markerX2, zeroMarkerY - 10 * nextMarker);
+		    line(markerX1, zeroMarkerY - 10 * nextMarker, markerX2,zeroMarkerY - 10 * nextMarker);
 		    
+		// text
+		fill(100,100, 255);
+		textSize(20);
+		var goalMsg = ("Goal: $" + totalGoal)
+;
+
+		text(goalMsg, baseX + baseSize, baseY - stemH);
+		var raisedMsg = ("Amount Raised: $" + amtRaised);
+		fill(255, 0, 0);
+		textSize(15);
+		text(raisedMsg, baseX + baseSize, fillPoint);
 		    
 		};
+///////////////////////////  END KHAN ACADEMY PROGRAM  //////////////////////////////		
+        }
+        if (typeof draw !== 'undefined') processing.draw = draw;
+    });
+  </script>
+</body>
+</html>
+
 ///////////////////////////  END KHAN ACADEMY PROGRAM  //////////////////////////////		
 
         }
